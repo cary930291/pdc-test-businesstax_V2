@@ -50,14 +50,13 @@ class BaseApprove(models.AbstractModel):
     user_can_approve = fields.Boolean(compute='compute_user_can_approve')
     user_can_submit = fields.Boolean(compute='compute_user_can_submit')
     user_can_retract = fields.Boolean(compute="_compute_user_can_retract")
-    user_id = fields.Many2one('res.users', help='提交人即为该单据的负责人', compute='get_user_id', store=True)
     approve_id = fields.Many2one('res.users', string=u'审核人')
     approval_record_ids = fields.One2many('approval.records', 'res_id')
 
-    @api.multi
-    def get_user_id(self):
-        for r in self:
-            r.user_id = r.create_uid.id
+    # @api.multi
+    # def get_user_id(self):
+    #     for r in self:
+    #         r.user_id = r.create_uid.id
 
     @api.model
     def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
@@ -189,13 +188,14 @@ class BaseApprove(models.AbstractModel):
     def send_info_mail(self, users):
         if users:
             # admin_id = self.env.ref('base.user_admin')
-            mail = self.env['mail.compose.message'].sudo(7).with_context(active_model='hr.expense.sheet',
-                                                                         active_id=self.id).create(
+            admin_user_id = self._get_server_user_id()
+            mail = self.env['mail.compose.message'].sudo(admin_user_id).with_context(active_model='hr.expense.sheet',
+                                                                                     active_id=self.id).create(
                 {
                     'body': self.name,
                     'author_id': self.create_uid.partner_id.id,
                     'partner_ids': [(4, user.partner_id.id) for user in users],
-                    'subject': self.user_id.name + self.name + '费用报销通知',
+                    'subject': self.employee_id.name + '费用报销通知',
                     'mail_server_id': self.env['ir.mail_server'].sudo().search([])[0].id,
                     'auto_delete_message': True,
                     'auto_delete': True,
@@ -209,6 +209,16 @@ class BaseApprove(models.AbstractModel):
 
                 pass
 
+    def _get_server_user_id(self):
+        server = self.env['ir.mail_server'].sudo().search([])
+        if not server:
+            raise UserError('找不到邮件服务器')
+        user_name = server[0].smtp_user
+
+        user = self.env['res.users'].search([('login', '=', user_name)])
+
+        return 7
+
     def _set_approve_user_id(self, user_id):
         if not user_id:
             raise UserError(u'找不到审核人')
@@ -220,14 +230,15 @@ class BaseApprove(models.AbstractModel):
 
         # admin_id=self.env.ref('base.user_admin')
         # print (admin_id)
-        mail = self.env['mail.compose.message'].sudo(7).with_context(active_model='hr.expense.sheet',
-                                                                     active_id=self.id).create(
+        email_user_id = self._get_server_user_id()
+        mail = self.env['mail.compose.message'].sudo(email_user_id).with_context(active_model='hr.expense.sheet',
+                                                                                 active_id=self.id).create(
             {
                 'body': self.name,
                 'author_id': self.create_uid.partner_id.id,
                 'partner_ids': [(4, user_id.partner_id.id)],
                 'model': 'hr.expense.sheet',
-                'subject': self.user_id.name + ' ' + self.name + u'费用待审核',
+                'subject': self.employee_id.name + u'费用待审核',
                 'mail_server_id': self.env['ir.mail_server'].sudo().search([])[0].id,
 
             })
@@ -258,6 +269,8 @@ class BaseApprove(models.AbstractModel):
             # self._set_approve_user_id(line_ids[0].user_id)
         self.with_context(tracking_disable=True)._set_approve_user_id(to_approve_id)
         self.to_approval_department_id = department_id.id
+        if department_id.manager_id:
+            self.p_manager_id=self.department_id.manager_id.user_id
         if department_id and department_id.auth_id and department_id.auth_id.info_user_ids:
             self.with_context(tracking_disable=True).send_info_mail(department_id.auth_id.info_user_ids)
         self.state = "reviewing"
@@ -283,8 +296,9 @@ class BaseApprove(models.AbstractModel):
             reject_str = "拒绝原因：" + remark
             self.message_post(body=reject_str)
         # admin_id = self.env['res.users']
-        self.sudo(7).message_post_with_view('hr_expense.hr_expense_template_refuse_reason',
-                                            values={'reason': remark, 'is_sheet': True, 'name': self.name})
+        admin_user_id = self._get_server_user_id()
+        self.sudo(admin_user_id).message_post_with_view('hr_expense.hr_expense_template_refuse_reason',
+                                                        values={'reason': remark, 'is_sheet': True, 'name': self.name})
         self.create_approve_record(status='1', remark=remark)
         self.set_to_reject()
         self.to_approval_department_id = False
@@ -318,6 +332,8 @@ class BaseApprove(models.AbstractModel):
 
     def set_to_done(self):
         self.state = 'approve'
+        self.sudo(self._get_server_user_id()).message_post_with_view('hr_expense_inherit.hr_expense_template_pass',
+                                                                     values={'is_sheet': True, 'name': self.name})
 
     def action_approve_done(self, need_notification=False):
 

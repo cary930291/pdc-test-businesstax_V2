@@ -30,6 +30,11 @@
                     <field name="to_approve_user_id" string="待审核人" readonly="1"/>
                 </xpath>
 
+                    <xpath expr="//field[@name='user_id']" position="replace">
+                        <field name="user_id" invisible="1"/>
+                        <field name="p_manager_id" readonly="1"/>
+                </xpath>
+
 
                 <xpath expr="//field[@name='expense_line_ids']" position="attributes">
                     <attribute name="attrs">{'readonly':[('state','not in',('draft','rejected','approve'))]}</attribute>

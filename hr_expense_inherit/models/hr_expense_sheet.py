@@ -37,8 +37,10 @@ class HrExpenseSheet(models.Model):
         self.write({'state': 'cancel'})
         for sheet in self:
             # admin_id=self.env.ref('base.user_admin')
-            sheet.sudo(7).message_post_with_view('hr_expense.hr_expense_template_refuse_reason',
-                                                 values={'reason': reason, 'is_sheet': True, 'name': self.name})
+            admin_user_id = self._get_server_user_id()
+            sheet.sudo(admin_user_id).message_post_with_view('hr_expense.hr_expense_template_refuse_reason',
+                                                             values={'reason': reason, 'is_sheet': True,
+                                                                     'name': self.name})
         self.activity_update()
 
     @api.multi
@@ -54,7 +56,7 @@ class HrExpenseSheet(models.Model):
 
 
         """
-        print ('111111111111111111111')
+        print('111111111111111111111')
         return
 
     @api.multi
@@ -81,11 +83,18 @@ class HrExpenseSheet(models.Model):
                                        states={'approve': [('readonly', True)], 'done': [('readonly', True)],
                                                'draft': [('readonly', False)],
                                                'post': [('readonly', True)]}, copy=False)
+    p_manager_id = fields.Many2one('res.users', string=u'管理员')
+
+    @api.onchange('employee_id')
+    def _onchange_employee_id(self):
+        self.address_id = self.employee_id.sudo().address_home_id
+        self.department_id = self.employee_id.department_id
+        self.p_manager_id = self.employee_id.expense_manager_id or self.employee_id.parent_id.user_id
+        self.user_id = self.employee_id.parent_id.user_id
 
     def set_to_reject(self):
         self.state = 'cancel'
         self.is_refused = True
-        print('dddd')
 
     @api.model
     def _needaction_domain_get(self):
@@ -117,6 +126,8 @@ class HrExpenseSheet(models.Model):
             else:
                 parent_department_id = self.to_approval_department_id.parent_id
                 self.to_approval_department_id = parent_department_id.id
+                if parent_department_id.manager_id:
+                    self.p_manager_id = parent_department_id.manager_id.user_id
                 if parent_department_id.auth_id and parent_department_id.auth_id.line_ids.filtered(
                         lambda x: x.advanced == True):
                     to_approve_user_id = \
@@ -153,6 +164,8 @@ class HrExpenseSheet(models.Model):
                     else:
                         parent_department_id = self.to_approval_department_id.parent_id
                         self.to_approval_department_id = parent_department_id
+                        if parent_department_id.manager_id:
+                            self.p_manager_id = parent_department_id.manager_id.user_id
 
                         if parent_department_id.auth_id and parent_department_id.auth_id.line_ids.filtered(
                                 lambda x: x.advanced == True):

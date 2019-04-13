@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <template id="hr_expense_template_pass">
+            <p>Your Expense
+                <t t-if="is_sheet">Report</t>
+                <t t-esc="name"/>
+                has been approved
+            </p>
+
+        </template>
+    </data>
+</odoo>

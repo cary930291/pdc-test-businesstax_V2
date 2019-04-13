@@ -34,6 +34,7 @@
         # 'data/sequence.xml',
         # 'views/assets.xml',
         # 'views/hide_menu.xml',
+        'views/data.xml',
         'views/hr_expense_views.xml',
         'views/hr_expense_sheet.xml',
         # 'views/account_advance_payment_view.xml',
