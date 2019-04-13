@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record id="hr_auth_settings_form" model="ir.ui.view">
+            <field name="name">权限审核</field>
+            <field name="model">hr.department.auth.settings</field>
+            <field name="arch" type="xml">
+                <form string="Tip">
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="expense_amount"/>
+                            </group>
+                            <group>
+                                <field name="info_user_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="签核人员">
+                                <field name="line_ids">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="user_id" options="{'no_create':True}"/>
+                                        <field name="advanced"/>
+                                        <field name="remark"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

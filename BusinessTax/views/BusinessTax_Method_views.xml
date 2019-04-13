@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<odoo>
+
+       <record model="ir.ui.view" id="businesstax_method_form_view">
+            <field name="name">businesstax.method_view.form</field>
+            <field name="model">businesstax.method</field>
+            <field name="arch" type="xml">
+                <form string="businesstax method Form">
+                    <sheet string="發票號區" modifiers="{}">
+                        <div class="oe_title" modifiers="{}"/>
+                        <group name="studio_group_6kwfK" modifiers="{}">
+                            <group name="studio_group_6kwfK_left" modifiers="{}">
+                                <field name="name" modifiers="{}"/>
+                                <field name="vat_name" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="vat_code" modifiers="{}"/>
+                                <field name="auto_invoice" modifiers="{}"/>
+                            </group>
+                        </group>
+                        <group >
+                            <group name="left" string="專屬單位(內部)" modifiers="{}">
+                                <field name="employee" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="warehouse" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="location" can_create="true" can_write="true" modifiers="{}"/>
+                            </group>
+                            <group name="right" string="專屬單位(外部)" modifiers="{}">
+                                <field name="partner" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="crm_team" can_create="true" can_write="true" modifiers="{}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers"/>
+	                    <field name="activity_ids" widget="mail_activity"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+                	</div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="businesstax_method_view">
+            <field name="name">businesstax_method_view.search</field>
+            <field name="model">businesstax.method</field>
+            <field name="arch" type="xml">
+                <tree string="businesstax method">
+                   	   <field name="name"  />
+                </tree>
+            </field>
+        </record>
+        
+       
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="basic_method_action">
+            <field name="name">BasicMethod</field>
+            <field name="res_model">businesstax.method</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+             <field name="view_id" ref="businesstax_method_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the Method Data
+                </p>
+            </field>
+        </record>
+
+         <menuitem id="Basic_method_menu" name="BasicMethod" parent="businesstax_basic_menu"
+                  action="basic_method_action"/>
+        <!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+    <!-- top level menu: no parent -->
+
+</odoo>

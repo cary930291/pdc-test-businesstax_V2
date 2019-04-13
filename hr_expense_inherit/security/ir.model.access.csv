@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+accessrt_account_advance_payment_expense_reconcile,rt_account_advance_payment_expense_reconcile,model_rt_account_advance_payment_expense_reconcile,,1,1,1,1
+access_rt_account_advance_payment,rt_account_advance_payment,model_rt_account_advance_payment,,1,1,1,1
+access_rt_account_advance_payment_line,rt_account_advance_payment_line,model_rt_account_advance_payment_line,,1,1,1,1

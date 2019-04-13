@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rt_approval_records,access_rt_approval_records,model_approval_records,,1,1,1,1
+access_hr_department_auth_settings_admin,access_hr_department_auth_settings,model_hr_department_auth_settings,,1,1,1,1
+access_hr_department_auth_settings_line_admin,access_hr_department_auth_settings_line,model_hr_department_auth_settings_line,,1,1,1,1

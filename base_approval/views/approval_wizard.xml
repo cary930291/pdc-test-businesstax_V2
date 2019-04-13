@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+
+        <record id="approval_comment_wizard_form" model="ir.ui.view">
+            <field name="name">审核意见</field>
+            <field name="model">to.approval.action.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Tip">
+                    <separator string="审核意见"/>
+                    <field name="remark"/>
+                    <field name="res_model" invisible="1"/>
+                    <footer>
+                        <button string='同意' name="approve" type="object" class="oe_highlight"/>
+
+                        <button string="拒绝" name="reject" type="object" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="approval_retract_wizard_form" model="ir.ui.view">
+            <field name="name">撤回原因</field>
+            <field name="model">to.approval.action.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Tip">
+                    <separator string="撤回原因"/>
+                    <field name="remark" required="1"/>
+                    <field name="res_model" invisible="1"/>
+                    <footer>
+                        <button string='确定' name="retract" type="object" class="oe_highlight"/>
+
+                        <button string="取消" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="approval_account_reject_wizard_form" model="ir.ui.view">
+            <field name="name">撤回原因</field>
+            <field name="model">to.approval.action.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Tip">
+                    <separator string="拒绝原因"/>
+                    <field name="remark" required="1"/>
+                    <field name="res_model" invisible="1"/>
+                    <footer>
+                        <button string='确定' name="retract" type="object" class="oe_highlight"/>
+
+                        <button string="取消" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

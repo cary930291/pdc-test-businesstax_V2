@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<odoo>
+
+       <record model="ir.ui.view" id="businesstax_name_form_view">
+            <field name="name">businesstax_name_view.form</field>
+            <field name="model">businesstax.name</field>
+            <field name="arch" type="xml">
+                <form string="businesstax name Form">
+                    <sheet>
+                        <group>
+                        	<group>
+                                <field name="name" />
+                                <field name="vat_code" />
+                                <field name="tax_code" />
+                                <field name="company"  />
+                                <field name="owner" />
+                                <field name="address" />
+                                <field name="contact_name" />
+                                <field name="contact_tel" />
+                            </group>
+                            <group>
+                                <field name="declare_type"  />
+                                <field name="hd_type"  />
+                                <field name="direct_deduction" />
+                                <field name="hd_vat_code" />
+                                <field name="declare_merge" />
+                            </group>
+                        </group>
+                        <!-- <notebook>
+                        <page string="Journal Items">
+                       
+                        </page>
+	               		</notebook> -->
+                    </sheet>
+                    <div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers"/>
+	                    <field name="activity_ids" widget="mail_activity"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+                	</div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="businesstaname_view">
+            <field name="name">businesstax_name_view.search</field>
+            <field name="model">businesstax.name</field>
+            <field name="arch" type="xml">
+                <tree string="businesstax name">
+                   	   <field name="name"  />
+                </tree>
+            </field>
+        </record>
+        
+       
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="basic_name_action">
+            <field name="name">Basic Name View</field>
+            <field name="res_model">businesstax.name</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+             <field name="view_id" ref="businesstaname_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the Name Data
+                </p>
+            </field>
+        </record>
+        
+         <!-- top level menu: no parent -->
+        <menuitem id="main_businesstax_menu" name="BusinessTax"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+    <!-- 基本資料 -->
+        <menuitem id="businesstax_basic_menu" name="Basic"  parent="main_businesstax_menu" sequence ="10"/>
+    <!-- 銷項發票作業 -->
+        <menuitem id="businesstax_sinv_menu" name="Sale"  parent="main_businesstax_menu" sequence ="20"/>
+    <!-- 進項發票作業 -->
+        <menuitem id="businesstax_pinv_menu" name="Purchase"  parent="main_businesstax_menu" sequence ="30"/>
+    <!-- 申報作業 -->
+        <menuitem id="businesstax_post_menu" name="Post"  parent="main_businesstax_menu" sequence ="40"/>
+    <!-- 設定 -->
+        <menuitem id="businesstax_config_menu" name="Config"  parent="main_businesstax_menu" sequence ="90"/>
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+         <menuitem id="Basic_name_menu" name="BasicName" parent="businesstax_basic_menu"
+                  action="basic_name_action"/>
+        <!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+    <!-- top level menu: no parent -->
+
+</odoo>

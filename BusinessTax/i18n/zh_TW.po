@@ -1,0 +1,726 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * inter_company_rules
+# 
+# Translators:
+# Eric Tang, 2018
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.saas~18+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-02 11:50+0000\n"
+"PO-Revision-Date: 2017-10-02 11:50+0000\n"
+"Last-Translator: Eric Tang, 2018\n"
+"Language-Team: Chinese (Taiwan) (https://www.transifex.com/odoo/teams/41243/zh_TW/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: businesstax.name
+#: model:ir.ui.menu,name:BusinessTax.businesstax_basic_menu
+msgid "Basic"
+msgstr "基本資料"
+
+#. module: businesstax.name
+#: model:ir.ui.menu,name:BusinessTax.businesstax_sinv_menu
+msgid "Sale"
+msgstr "銷項發票作業"
+
+#. module: businesstax.name
+#: model:ir.ui.menu,name:BusinessTax.businesstax_pinv_menu
+msgid "Purchase"
+msgstr "進項發票作業"
+
+#. module: businesstax.name
+#: model:ir.ui.menu,name:BusinessTax.businesstax_post_menu
+msgid "Post"
+msgstr "申報作業"
+
+#. module: businesstax.name
+#: model:ir.ui.menu,name:BusinessTax.businesstax_config_menu
+msgid "Config"
+msgstr "設定"
+
+#. module: businesstax.name
+#: model:ir.ui.menu,name:BusinessTax.Basic_name_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_name_action
+msgid "BasicName"
+msgstr "營業人名稱"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__name
+msgid "Name"
+msgstr "營業人名稱"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__vat_code
+msgid "Vat Code"
+msgstr "營利事業統一編號"
+
+#. module: BusinessTax
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__tax_code
+msgid "Tax Code"
+msgstr "營利事業稅籍編號"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__company
+msgid "Company"
+msgstr "公司"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__owner
+msgid "owner"
+msgstr "負責人姓名"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__address
+msgid "address"
+msgstr "營業地址"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__contact_name
+msgid "contact name"
+msgstr "聯絡人姓名"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__contact_tel
+msgid "contact tel"
+msgstr "聯絡人電話"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__declare_type
+msgid "declare type"
+msgstr "申報種類"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__hd_type
+msgid "hd type"
+msgstr "總繳代碼"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__direct_deduction
+msgid "direct　deduction"
+msgstr "直接扣抵法"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__hd_vat_code
+msgid "hd vat code"
+msgstr "總機構統編"
+
+#. module: businesstax.name
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_name
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_name__declare_merge
+msgid "declare　merge"
+msgstr "進項資料併總公司合併申報"
+
+#. module: businesstax.method
+#: model:ir.ui.menu,name:BusinessTax.Basic_method_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_method_action
+msgid "BasicMethod"
+msgstr "發票號區"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__name
+msgid "Name"
+msgstr "發票號區"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__vat_name
+msgid "Company"
+msgstr "公司"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__vat_code
+msgid "Vat Code"
+msgstr "統一編號"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__auto_invoice
+msgid "Auto Invoice"
+msgstr "自動開立發票"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__employee
+msgid "Employee"
+msgstr "員工"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__warehouse
+msgid "Warehouse"
+msgstr "倉庫"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__location
+msgid "Location"
+msgstr "儲存地點"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__partner
+msgid "Partner"
+msgstr "聯係人"
+
+#. module: businesstax.method
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_method
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_method__crm_team
+msgid "CRM Team"
+msgstr "銷售渠道"
+
+#. module: businesstax.profix
+#: model:ir.ui.menu,name:BusinessTax.Basic_profix_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_profix_action
+msgid "Basicprofix"
+msgstr "發票字軌"
+
+#. module: businesstax.profix
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_profix
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_profix__name
+msgid "Name"
+msgstr "字軌"
+
+#. module: businesstax.profix
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_profix
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_profix__profix_type
+msgid "Profix Type"
+msgstr "字軌類別"
+
+#. module: businesstax.profix
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_profix
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_profix__year
+msgid "Year"
+msgstr "申報年度"
+
+#. module: businesstax.profix
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_profix
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_profix__period_start
+msgid "Period Start"
+msgstr "期間_起"
+
+#. module: businesstax.profix
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_profix
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_profix__period_end
+msgid "Period End"
+msgstr "期間_迄"
+
+#. module: businesstax.year
+#: model:ir.ui.menu,name:BusinessTax.Config_year_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_year_action
+msgid "configyear"
+msgstr "申報年度"
+
+#. module: businesstax.year
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_year
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_year__name
+msgid "Name"
+msgstr "年度"
+
+#. module: businesstax.period
+#: model:ir.ui.menu,name:BusinessTax.Config_period_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_period_action
+msgid "configperiod"
+msgstr "申報期間"
+
+#. module: businesstax.period
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_period
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_period__name
+msgid "Name"
+msgstr "月份"
+
+#. module: businesstax.profix.type
+#: model:ir.ui.menu,name:BusinessTax.Config_profix_type_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_profix_type_action
+msgid "configprofixtype"
+msgstr "字軌類別"
+
+#. module: businesstax.profix.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_profix_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_profix_type__name
+msgid "Name"
+msgstr "字軌類別"
+
+#. module: businesstax.certificate.category
+#: model:ir.ui.menu,name:BusinessTax.Config_certificate_category_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_certificate_category_action
+msgid "configcertificatecategory"
+msgstr "憑證類別"
+
+#. module: businesstax.certificate.category
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_certificate_category
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_certificate_category__name
+msgid "Name"
+msgstr "憑證類別"
+
+#. module: businesstax.certificate.category
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_certificate_category
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_certificate_category__code
+msgid "Code"
+msgstr "憑證代碼"
+
+#. module: businesstax.status
+#: model:ir.ui.menu,name:BusinessTax.Config_status_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_status_action
+msgid "configstatus"
+msgstr "發票本使用狀態"
+
+#. module: businesstax.status
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_status
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_status__name
+msgid "Name"
+msgstr "發票本使用狀態"
+
+#. module: businesstax.vat.declare.code
+#: model:ir.ui.menu,name:BusinessTax.Config_vat_declare_code_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_vat_declare_code_action
+msgid "configvatdeclarecode"
+msgstr "VAT 申報格式碼"
+
+#. module: businesstax.vat.declare.code
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_vat_declare_code
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_vat_declare_code__name
+msgid "Name"
+msgstr "VAT 申報格式"
+
+#. module: businesstax.vat.declare.code
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_vat_declare_code
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_vat_declare_code__code
+msgid "Code"
+msgstr "VAT 申報格式代碼"
+
+#. module: businesstax.type
+#: model:ir.ui.menu,name:BusinessTax.Config_type_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_type_action
+msgid "configtype"
+msgstr "營業稅申報類型"
+
+#. module: businesstax.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_type__name
+msgid "Name"
+msgstr "營業稅申報名稱"
+
+#. module: businesstax.tax_code_type
+#: model:ir.ui.menu,name:BusinessTax.Config_tax_code_type_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_tax_code_type_action
+msgid "configvatdeclarecode"
+msgstr "課稅別"
+
+#. module: businesstax.tax.code.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_tax_code_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_tax_code_type__name
+msgid "Name"
+msgstr "稅類別"
+
+#. module: businesstax.tax.code.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_tax_code_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_tax_code_type__code
+msgid "Code"
+msgstr "稅代碼"
+
+#. module: businesstax.declare.deduction
+#: model:ir.ui.menu,name:BusinessTax.Config_Declare_Deduction_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_Declare_Deduction_action
+msgid "configDeclareDeduction"
+msgstr "發票申報扣抵碼"
+
+#. module: businesstax.declare.deduction
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_declare_deduction
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_declare_deduction__name
+msgid "Name"
+msgstr "扣抵名稱"
+
+#. module: businesstax.declare.deduction
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_declare_deduction
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_declare_deduction__code
+msgid "Code"
+msgstr "扣抵代碼"
+
+#. module: businesstax.through.custom
+#: model:ir.ui.menu,name:BusinessTax.Config_Through_Custom_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_Through_Custom_action
+msgid "configThroughCustom"
+msgstr "通關方式"
+
+#. module: businesstax.through.custom
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_through_custom
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_through_custom__name
+msgid "Name"
+msgstr "通關名稱"
+
+#. module: businesstax.through.custom
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_through_custom
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_through_custom__code
+msgid "Code"
+msgstr "通關代碼"
+
+#. module: businesstax.declare.type
+#: model:ir.ui.menu,name:BusinessTax.Config_Declare_Type_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_Declare_Type_action
+msgid "configdeclaretype"
+msgstr "申報種類"
+
+#. module: businesstax.declare.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_declare_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_declare_type__name
+msgid "Name"
+msgstr "申報名稱"
+
+#. module: businesstax.declare.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_declare_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_declare_type__code
+msgid "Code"
+msgstr "申報代碼"
+
+
+#. module: businesstax.hd.type
+#: model:ir.ui.menu,name:BusinessTax.Config_hd_Type_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_hd_Type_action
+msgid "confighdtype"
+msgstr "總繳代碼"
+
+#. module: businesstax.hd.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_hd_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_hd_type__name
+msgid "Name"
+msgstr "總繳名稱"
+
+#. module: businesstax.hd.type
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_hd_type
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_hd_type__code
+msgid "Code"
+msgstr "總繳代碼"
+
+#. module: businesstax.vat.declare.mapping
+#: model:ir.ui.menu,name:BusinessTax.Config_vat_declare_mapping_menu
+#: model:ir.actions.act_window,name:BusinessTax.config_vat_declare_mapping_action
+msgid "configvat_declare_mapping"
+msgstr "稅碼對應表"
+
+#. module: businesstax.vat.declare.mapping
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_vat_declare_mapping
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_vat_declare_mapping__type
+msgid "Type"
+msgstr "營業稅申報類型"
+
+#. module: businesstax.vat.declare.mapping
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_vat_declare_mapping
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_vat_declare_mapping__certificate_category
+msgid "Certificate Category"
+msgstr "憑證類別"
+
+#. module: businesstax.vat.declare.mapping
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_vat_declare_mapping
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_vat_declare_mapping__vat_declare_code
+msgid "Vat Declare Code"
+msgstr "VAT 申報格式碼"
+
+
+#. module: businesstax.book
+#: model:ir.ui.menu,name:BusinessTax.sinv_book_menu
+#: model:ir.actions.act_window,name:BusinessTax.sinv_book_action
+msgid "sinvbook"
+msgstr "發票本"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__name
+msgid "Name"
+msgstr "Name"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__vat_code
+msgid "Vat Code"
+msgstr "統一編號"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__vat_name
+msgid "Vat Name"
+msgstr "營業人名稱"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__method
+msgid "Method"
+msgstr "發票區號"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__year
+msgid "Year"
+msgstr "申報年度"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__period_start
+msgid "Period Start"
+msgstr "有效年月-啟始期"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__period_end
+msgid "Period End"
+msgstr "有效年月-截止期"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__certificate_category
+msgid "Certificate Category"
+msgstr "憑證類別"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__vat_declare_code
+msgid "Vat Declare Code"
+msgstr "VAT 申報格式碼"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__profix
+msgid "Profix"
+msgstr "發票字軌"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__invoice_begin
+msgid "Invoice Begin"
+msgstr "發票號碼_起"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__invoice_end
+msgid "Invoice End"
+msgstr "發票號碼_迄"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__profix_type
+msgid "Profix Type"
+msgstr "字軌類型"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__invoice_next
+msgid "Invoice Next"
+msgstr "下一本發票本號碼"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__invoice_now
+msgid "Invoice Now"
+msgstr "目前使用到的號碼"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__status
+msgid "Status"
+msgstr "發票本使用狀態"
+
+#. module: businesstax.book
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_book
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_book__invoice_lastdate
+msgid "Status"
+msgstr "最近開立發票日期"
+
+#. module: businesstax.invoice
+#: model:ir.ui.menu,name:BusinessTax.Config_invoice_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_invoice_action
+msgid "sinvinvoice"
+msgstr "銷項發票表頭"
+
+#. module: businesstax.invoice
+#: model:ir.ui.menu,name:BusinessTax.Config_purchase_menu
+#: model:ir.actions.act_window,name:BusinessTax.basic_purchase_action
+msgid "sinvinvoice"
+msgstr "進項發票表頭"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__name
+msgid "Name"
+msgstr "發票號碼"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__certificate_category
+msgid "Certificate Category"
+msgstr "憑證類別"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__invoice_date
+msgid "Invoice Date"
+msgstr "發票開立日期"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__sales_amount
+msgid "Sales Amount"
+msgstr "銷售金額"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__tax_amount
+msgid "Tax Amount"
+msgstr "營業稅額"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__partner
+msgid "Partner"
+msgstr "聯係人"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__vat_code_partner
+msgid "Vat Code Partner"
+msgstr "聯絡人營利事業統一編號"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__book
+msgid "Book"
+msgstr "發票本號碼"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__type
+msgid "Type"
+msgstr "營業稅申報類型"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__tax_code_type
+msgid "Tax Code Type"
+msgstr "課稅別"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__declare_deduction
+msgid "Declare Deduction"
+msgstr "發票申報扣抵碼"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__vat_declare_code
+msgid "Vat Declare Code"
+msgstr "VAT 申報格式碼"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__year
+msgid "Year"
+msgstr "資料所屬年度"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__period
+msgid "Period"
+msgstr "資料所屬月份"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__period
+msgid "Through Custom"
+msgstr "通關方式"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__vat_name
+msgid "Vat Name"
+msgstr "營業人名稱"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__tax_code
+msgid "Tax Code"
+msgstr "營利事業稅籍編號"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__vat_code
+msgid "Vat Code"
+msgstr "統一編號"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__profix
+msgid "Profix"
+msgstr "發票字軌"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__invoice_no
+msgid "Invoice No"
+msgstr "發票號碼(數字)"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__declare_year
+msgid "Year"
+msgstr "實際申報年度"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__declare_period
+msgid "Period"
+msgstr "實際申報期間"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__customs_collection_no
+msgid "Customs Collection no"
+msgstr "海關代徵營業稅"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__tax_base
+msgid "Tax Base"
+msgstr "營業稅稅基"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__date_print
+msgid "Print Date"
+msgstr "產生日期"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__user_id
+msgid "Print User"
+msgstr "產生人員"
+
+#. module: businesstax.invoice
+#: model:ir.ui.view,arch_db:BusinessTax.businesstax_invoice
+#: model:ir.model.fields,field_description:BusinessTax.field_businesstax_invoice__state
+msgid "Status"
+msgstr "狀態"
+
+#. module: businesstax.invoice
+#: model:ir.ui.menu,name:BusinessTax.output_textfile_menu
+#: model:ir.actions.act_window,name:BusinessTax.businesstax_output_textfile_action
+msgid "OutputTextFileMenu"
+msgstr "產生媒體申報檔"
+
+

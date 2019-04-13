@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 申報年度 -->
+        <record id="businesstax_year_0" model="businesstax.year">
+            <field name="id">0</field>
+            <field name="name">107</field>
+        </record>
+        <record id="businesstax_year_1" model="businesstax.year">
+            <field name="id">1</field>
+            <field name="name">108</field>
+        </record>
+        <!-- 申報期間 -->
+        <record id="businesstax_period_0" model="businesstax.period">
+            <field name="id">0</field>
+            <field name="name">01</field>
+        </record>
+        <record id="businesstax_period_1" model="businesstax.period">
+            <field name="id">1</field>
+            <field name="name">02</field>
+        </record>
+        <record id="businesstax_period_2" model="businesstax.period">
+            <field name="id">2</field>
+            <field name="name">03</field>
+        </record>
+        <record id="businesstax_period_3" model="businesstax.period">
+            <field name="id">3</field>
+            <field name="name">04</field>
+        </record>
+        <record id="businesstax_period_4" model="businesstax.period">
+            <field name="id">4</field>
+            <field name="name">05</field>
+        </record>
+        <record id="businesstax_period_5" model="businesstax.period">
+            <field name="id">5</field>
+            <field name="name">06</field>
+        </record>
+        <record id="businesstax_period_6" model="businesstax.period">
+            <field name="id">6</field>
+            <field name="name">07</field>
+        </record>
+        <record id="businesstax_period_7" model="businesstax.period">
+            <field name="id">7</field>
+            <field name="name">08</field>
+        </record>
+        <record id="businesstax_period_8" model="businesstax.period">
+            <field name="id">8</field>
+            <field name="name">09</field>
+        </record>
+        <record id="businesstax_period_9" model="businesstax.period">
+            <field name="id">9</field>
+            <field name="name">10</field>
+        </record>
+        <record id="businesstax_period_10" model="businesstax.period">
+            <field name="id">10</field>
+            <field name="name">11</field>
+        </record>
+        <record id="businesstax_period_11" model="businesstax.period">
+            <field name="id">11</field>
+            <field name="name">12</field>
+        </record>
+        <!-- 字軌類別 -->
+        <record id="businesstax_profix_type_0" model="businesstax.profix.type">
+            <field name="id">0</field>
+            <field name="name">甲種 三聯式手開統一發票（含加副聯者）、三聯式收銀機統一發票（含 政府及營業人印製部份）及電子計算機統一發票</field>
+        </record>
+        <record id="businesstax_profix_type_1" model="businesstax.profix.type">
+            <field name="id">1</field>
+            <field name="name">乙種 二聯式手開統一發票（含加副聯者）、特種統一發票及政府機關印 製之二聯式收銀機統一發票</field>
+        </record>
+        <record id="businesstax_profix_type_2" model="businesstax.profix.type">
+            <field name="id">2</field>
+            <field name="name">丙種 營業人自行印製之二聯式收銀機統一發票</field>
+        </record>
+        <record id="businesstax_profix_type_3" model="businesstax.profix.type">
+            <field name="id">3</field>
+            <field name="name">丁種 電子發票專用字軌</field>
+        </record>
+        <!-- 憑證類別 -->
+        <record id="businesstax_certificate_category_0" model="businesstax.certificate.category">
+            <field name="id">0</field>
+            <field name="code">01</field>
+            <field name="name">三聯式</field>
+        </record>
+        <record id="businesstax_certificate_category_1" model="businesstax.certificate.category">
+            <field name="id">1</field>
+            <field name="code">02</field>
+            <field name="name">二聯式</field>
+        </record>
+        <record id="businesstax_certificate_category_2" model="businesstax.certificate.category">
+            <field name="id">2</field>
+            <field name="code">03</field>
+            <field name="name">	二聯式收銀機</field>
+        </record>
+        <record id="businesstax_certificate_category_3" model="businesstax.certificate.category">
+            <field name="id">3</field>
+            <field name="code">04</field>
+            <field name="name">特種稅額</field>
+        </record>
+        <record id="businesstax_certificate_category_4" model="businesstax.certificate.category">
+            <field name="id">4</field>
+            <field name="code">05</field>
+            <field name="name">電子計算機</field>
+        </record>
+        <record id="businesstax_certificate_category_5" model="businesstax.certificate.category">
+            <field name="id">5</field>
+            <field name="code">06</field>
+            <field name="name">三聯式收銀機</field>
+        </record>
+        <record id="businesstax_certificate_category_6" model="businesstax.certificate.category">
+            <field name="id">6</field>
+            <field name="code">07</field>
+            <field name="name">一般稅額計算之電子發票</field>
+        </record>
+        <record id="businesstax_certificate_category_7" model="businesstax.certificate.category">
+            <field name="id">7</field>
+            <field name="code">08</field>
+            <field name="name">特種稅額計算之電子發票</field>
+        </record>
+        <record id="businesstax_certificate_category_8" model="businesstax.certificate.category">
+            <field name="id">8</field>
+            <field name="code">11</field>
+            <field name="name">收據</field>
+        </record>
+        <record id="businesstax_certificate_category_9" model="businesstax.certificate.category">
+            <field name="id">9</field>
+            <field name="code">12</field>
+            <field name="name">報關外銷</field>
+        </record>
+        <record id="businesstax_certificate_category_10" model="businesstax.certificate.category">
+            <field name="id">10</field>
+            <field name="code">09</field>
+            <field name="name">載有稅額之其他憑證</field>
+        </record>
+        <record id="businesstax_certificate_category_11" model="businesstax.certificate.category">
+            <field name="id">11</field>
+            <field name="code">10</field>
+            <field name="name">公用事業載具流水號</field>
+        </record>
+        <!-- 發票本使用狀態 -->
+        <record id="businesstax_status_0" model="businesstax.status">
+            <field name="id">0</field>
+            <field name="name">Close(已用完)</field>
+        </record>
+        <record id="businesstax_status_1" model="businesstax.status">
+            <field name="id">1</field>
+            <field name="name">Unuse(尚未使用過)</field>
+        </record>
+        <record id="businesstax_status_2" model="businesstax.status">
+            <field name="id">2</field>
+            <field name="name">In using(正在使用中)</field>
+        </record>
+        <!-- VAT 申報格式碼 -->
+        <record id="businesstax_vat_declare_code_0" model="businesstax.vat.declare.code">
+            <field name="id">0</field>
+            <field name="code">21</field>
+            <field name="name">進項三聯式、電子計算機統一發票</field>
+        </record>
+        <record id="businesstax_vat_declare_code_1" model="businesstax.vat.declare.code">
+            <field name="id">1</field>
+            <field name="code">22</field>
+            <field name="name">進項二聯式收銀機統一發票、載有稅額之其他憑證</field>
+        </record>
+        <record id="businesstax_vat_declare_code_2" model="businesstax.vat.declare.code">
+            <field name="id">2</field>
+            <field name="code">23</field>
+            <field name="name">三聯式、電子計算機、三聯式收銀機統一發票及一般稅額計算之電子發票之進貨退出或折讓證明單，應逐筆登錄</field>
+        </record>
+        <record id="businesstax_vat_declare_code_3" model="businesstax.vat.declare.code">
+            <field name="id">3</field>
+            <field name="code">24</field>
+            <field name="name">二聯式收銀機統一發票及載有稅額之其他憑證之進貨退出或折讓證明單，應逐筆登錄</field>
+        </record>
+        <record id="businesstax_vat_declare_code_4" model="businesstax.vat.declare.code">
+            <field name="id">4</field>
+            <field name="code">25</field>
+            <field name="name">進項三聯式收銀機統一發票及一般稅額計算之電子發票(伍佰元以下可彙登)</field>
+        </record>
+        <record id="businesstax_vat_declare_code_5" model="businesstax.vat.declare.code">
+            <field name="id">5</field>
+            <field name="code">26</field>
+            <field name="name">彙登每張稅額伍佰元以下之進項三聯式,電子計算機發票</field>
+        </record>
+        <record id="businesstax_vat_declare_code_6" model="businesstax.vat.declare.code">
+            <field name="id">6</field>
+            <field name="code">27</field>
+            <field name="name">彙登每張稅額伍佰元以下之進項其他憑証及二聯收銀機</field>
+        </record>
+        <record id="businesstax_vat_declare_code_7" model="businesstax.vat.declare.code">
+            <field name="id">7</field>
+            <field name="code">28</field>
+            <field name="name">	進項海關代徵營業稅繳納證</field>
+        </record>
+        <!-- 營業稅申報類型 -->
+        <record id="businesstax_type_0" model="businesstax.type">
+            <field name="id">0</field>
+            <field name="name">進項 ( input tax )</field>
+        </record>
+        <record id="businesstax_type_1" model="businesstax.type">
+            <field name="id">1</field>
+            <field name="name">	進項折讓 ( input tax discount )</field>
+        </record>
+        <record id="businesstax_type_2" model="businesstax.type">
+            <field name="id">2</field>
+            <field name="name">進項(彙登) ( input tax summary )</field>
+        </record>
+        <record id="businesstax_type_3" model="businesstax.type">
+            <field name="id">3</field>
+            <field name="name">銷項 ( output tax )</field>
+        </record>
+        <record id="businesstax_type_4" model="businesstax.type">
+            <field name="id">4</field>
+            <field name="name">銷項折讓 ( output tax discount )</field>
+        </record>
+        <!-- 課稅別 -->
+        <record id="businesstax_tax_code_type_0" model="businesstax.tax.code.type">
+            <field name="id">0</field>
+            <field name="code">1</field>
+            <field name="name">應稅</field>
+        </record>
+        <record id="businesstax_tax_code_type_1" model="businesstax.tax.code.type">
+            <field name="id">1</field>
+            <field name="code">2</field>
+            <field name="name">零稅</field>
+        </record>
+        <record id="businesstax_tax_code_type_2" model="businesstax.tax.code.type">
+            <field name="id">2</field>
+            <field name="code">3</field>
+            <field name="name">免稅</field>
+        </record>
+        <record id="businesstax_tax_code_type_3" model="businesstax.tax.code.type">
+            <field name="id">3</field>
+            <field name="code">D</field>
+            <field name="name">空白未使用之統一發票</field>
+        </record>
+        <record id="businesstax_tax_code_type_4" model="businesstax.tax.code.type">
+            <field name="id">4</field>
+            <field name="code">F</field>
+            <field name="name">作廢之統一發票</field>
+        </record>
+        <!-- 發票申報扣抵碼 -->
+        <record id="businesstax_declare_deduction_0" model="businesstax.declare.deduction">
+            <field name="id">0</field>
+            <field name="code">1</field>
+            <field name="name">進項可扣抵之進貨及費用</field>
+        </record>
+        <record id="businesstax_declare_deduction_1" model="businesstax.declare.deduction">
+            <field name="id">1</field>
+            <field name="code">2</field>
+            <field name="name">進項可扣抵之固定資產</field>
+        </record>
+        <record id="businesstax_declare_deduction_2" model="businesstax.declare.deduction">
+            <field name="id">2</field>
+            <field name="code">3</field>
+            <field name="name">進項不可扣抵之進貨及費用</field>
+        </record>
+        <record id="businesstax_declare_deduction_3" model="businesstax.declare.deduction">
+            <field name="id">3</field>
+            <field name="code">4</field>
+            <field name="name">進項不可扣抵之固定資產</field>
+        </record>
+        <!-- 通關方式 -->
+        <record id="businesstax_through_custom_0" model="businesstax.through.custom">
+            <field name="id">0</field>
+            <field name="code">1</field>
+            <field name="name">代表適用零稅率非經海關出口應附證明文件之銷項</field>
+        </record>
+        <record id="businesstax_through_custom_1" model="businesstax.through.custom">
+            <field name="id">1</field>
+            <field name="code">2</field>
+            <field name="name">代表適用零稅率經海關出口免附證明文件之銷項</field>
+        </record>
+        <record id="businesstax_through_custom_2" model="businesstax.through.custom">
+            <field name="id">2</field>
+            <field name="code">99</field>
+            <field name="name">空白代表進項憑證、銷貨退回或折讓證明單及非適用零稅</field>
+        </record>
+        <!-- 申報種類 -->
+        <record id="businesstax_declare_type_0" model="businesstax.declare.type">
+            <field name="id">0</field>
+            <field name="code">1</field>
+            <field name="name">按期申報</field>
+        </record>
+        <record id="businesstax_declare_type_1" model="businesstax.declare.type">
+            <field name="id">1</field>
+            <field name="code">2</field>
+            <field name="name">按月申報</field>
+        </record>
+        <!-- 總繳代碼 -->
+        <record id="businesstax_hd_type_0" model="businesstax.hd.type">
+            <field name="id">0</field>
+            <field name="code">0</field>
+            <field name="name">單一機構報繳</field>
+        </record>
+        <record id="businesstax_hd_type_1" model="businesstax.hd.type">
+            <field name="id">1</field>
+            <field name="code">1</field>
+            <field name="name">總機構彙總報繳</field>
+        </record>
+        <record id="businesstax_hd_type_2" model="businesstax.hd.type">
+            <field name="id">2</field>
+            <field name="code">2</field>
+            <field name="name">各單位(分支機構)分別申報</field>
+        </record>
+        <!-- 總繳代碼 -->
+        <record id="businesstax_hd_type_0" model="businesstax.hd.type">
+            <field name="id">0</field>
+            <field name="code">0</field>
+            <field name="name">單一機構報繳</field>
+        </record>
+        <!-- 稅碼對應表 -->
+        <record id="businesstax_vat_declare_mapping_0" model="businesstax.vat.declare.mapping">
+            <field name="id">0</field>
+            <field name="type" ref="BusinessTax.businesstax_type_0"/>
+            <field name="certificate_category" ref="BusinessTax.businesstax_certificate_category_0"/>
+            <field name="vat_declare_code" ref="BusinessTax.businesstax_vat_declare_code_0"/>
+        </record>
+        <record id="businesstax_vat_declare_mapping_1" model="businesstax.vat.declare.mapping">
+            <field name="id">1</field>
+            <field name="type" ref="BusinessTax.businesstax_type_1"/>
+            <field name="certificate_category" ref="BusinessTax.businesstax_certificate_category_0"/>
+            <field name="vat_declare_code" ref="BusinessTax.businesstax_vat_declare_code_2"/>
+        </record>
+        <record id="businesstax_vat_declare_mapping_2" model="businesstax.vat.declare.mapping">
+            <field name="id">2</field>
+            <field name="type" ref="BusinessTax.businesstax_type_0"/>
+            <field name="certificate_category" ref="BusinessTax.businesstax_certificate_category_2"/>
+            <field name="vat_declare_code" ref="BusinessTax.businesstax_vat_declare_code_1"/>
+        </record>
+    </data>
+</odoo>

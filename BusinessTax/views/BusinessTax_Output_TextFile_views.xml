@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_server_businesstax_invoice_export_textfile" model="ir.actions.server">
+            <field name="name">Export TextFile</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="BusinessTax.model_businesstax_invoice" />
+            <field name="binding_model_id" ref="BusinessTax.model_businesstax_invoice" />
+            <field name="state">code</field>
+            <field name="code">action = model.export_invoice_textfile()</field>
+	    </record>
+
+        <record id="action_server_invoice_cancel" model="ir.actions.server">
+            <field name="name">Cancel</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_businesstax_invoice" />
+            <field name="binding_model_id" ref="model_businesstax_invoice" />
+            <field name="state">code</field>
+            <field name="code">action = model.invoice_cancel()</field>
+        </record>
+        <record id="businesstax_output_textfile_tree" model="ir.ui.view">
+            <field name="name">businesstax.output.textfile.tree</field>
+            <field name="model">businesstax.invoice</field>
+            <field name="arch" type="xml">
+                <tree string="Invoice OutPut File" create="false"  delete="false" edit="false">
+                     <field name="vat_declare_code" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="type"/>
+                        <field name="sales_amount" modifiers="{}"/>
+                        <field name="tax_amount" modifiers="{}"/>
+                        <field name="tax_code_type" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="declare_deduction" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="name" modifiers="{}"/>
+                        <field name="declare_year" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="declare_period" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="year" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="period" can_create="true" can_write="true" modifiers="{}"/>
+                        <field name="vat_code_partner" modifiers="{}"/>
+                        <field name="vat_code" modifiers="{'readonly':true}"/>
+                        <field name="state" attrs="{'readonly': [('state', '=', ['printed'])]}"/>
+                   	    <field name="date_print" attrs="{'readonly': [('state', '=', ['printed'])]}"/>
+                   	    <field name="user_id" attrs="{'readonly': [('state', '=', ['printed'])]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="businesstax_output_textfile_form" model="ir.ui.view">
+            <field name="name">businesstax.output.textfile.form</field>
+            <field name="model">businesstax.invoice</field>
+            <field name="arch" type="xml">
+                <form string="businesstax invoice Form" create="false" edit="false" delete="false">
+                   <sheet string="發票表頭" modifiers="{}">
+                        <div class="oe_title" modifiers="{}"/>
+                        <group modifiers="{}">
+                            <group name="left" modifiers="{}">
+                                <field name="name" modifiers="{}"/>
+                                <field name="certificate_category" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="invoice_date" modifiers="{}"/>
+                                <field name="sales_amount" modifiers="{}"/>
+                                <field name="tax_amount" modifiers="{}"/>
+                            </group>
+                            <group name="right" modifiers="{}">
+                                <field name="partner" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="vat_code_partner" modifiers="{}"/>
+                                <field name="book" can_create="true" can_write="true" modifiers="{}"/>
+                            </group>
+                        </group>
+                        <notebook name="notebook_CHoen" modifiers="{}">
+                            <page name="page_CHoen" string="檢核資訊" modifiers="{}">
+                                <group name="group_CHoen" modifiers="{}">
+                                    <group name="group_CHoen_left" modifiers="{}">
+                                        <field name="type" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="tax_code_type" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="declare_deduction" can_create="true" can_write="true"  attrs="{'invisible':[('type','!=',1)] }"/>
+                                    </group>
+                                    <group name="group_CHoen_right" modifiers="{}">
+                                        <field name="vat_declare_code" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="year" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="period" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="through_custom" can_create="true" can_write="true" modifiers="{}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="page_po4sy" string="申報資訊" modifiers="{}">
+                                <group name="group_po4sy" modifiers="{}">
+                                    <group name="group_po4sy_left" modifiers="{}">
+                                        <field name="vat_name" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="tax_code" />
+                                        <field name="vat_code" />
+                                    </group>
+                                    <group name="group_po4sy_right" modifiers="{}">
+                                        <field name="profix" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="invoice_no" modifiers="{}"/>
+                                        <field name="declare_year" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="declare_period" can_create="true" can_write="true" modifiers="{}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="studio_page_wAJar" string="海關代徵" attrs="{'invisible':[('vat_declare_code','!=',8)] }">
+                                <group name="group_wAJar" modifiers="{}">
+                                    <group name="group_wAJar_left" modifiers="{}">
+                                        <field name="customs_collection_no" modifiers="{}"/>
+                                        <field name="tax_base" modifiers="{}"/>
+                                    </group>
+                                    <group name="studio_group_wAJar_right" modifiers="{}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="businesstax_output_textfile_action" model="ir.actions.act_window">
+            <field name="name">businesstax.output.textfile.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">businesstax.invoice</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5,0,0),
+             (0,0,{'view_mode':'tree','view_id':ref('businesstax_output_textfile_tree')}),
+             (0,0,{'view_mode':'form','view_id':ref('businesstax_output_textfile_form')})]"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="output_textfile_menu" name="OutputTextFileMenu" parent="businesstax_post_menu"
+                  action="businesstax_output_textfile_action" sequence="10"/>
+
+
+    </data>
+</odoo>
+
+

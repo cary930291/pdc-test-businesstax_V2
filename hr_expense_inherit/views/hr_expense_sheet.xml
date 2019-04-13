@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_expense_sheet_form_inherit" model="ir.ui.view">
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_submit_sheet']" position="replace">
+
+                    <button name="action_submit" string="提交" type="object"
+                            attrs="{'invisible':['|',('user_can_submit','=',False),('state','not in',('draft','rejected'))]}"
+                            class="oe_highlight"/>
+                    <field name="user_can_submit" invisible="1"/>
+                    <field name="user_can_approve" invisible="1"/>
+                    <!--<field name="user_can_modify" invisible="1"/>-->
+
+                    <button name="action_retract" string="撤回" type="object"
+                            groups=""
+                            attrs="{'invisible':['|',('user_can_submit','=',False),('state','not in',('reviewing','approve'))]}"/>
+
+                    <button name="action_comment" string="审核" type="object" class="oe_highlight"
+                            groups=""
+                            attrs="{'invisible':['|',('user_can_approve','=',False),('state','!=','reviewing')]}"/>
+
+                </xpath>
+
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="to_approve_user_id" string="待审核人" readonly="1"/>
+                </xpath>
+
+
+                <xpath expr="//field[@name='expense_line_ids']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('state','not in',('draft','rejected','approve'))]}</attribute>
+                </xpath>
+                <xpath expr="//page[1]" position="after">
+                    <page name="records" string="签核记录">
+                        <field name="approval_record_ids" readonly="1">
+                            <tree>
+                                <field name="user_id"/>
+                                <field name="write_date" string="时间"/>
+                                <field name="status"/>
+                                <field name="remark"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+
+            </field>
+        </record>
+        <record id="view_hr_expense_sheet_filter_inherit" model="ir.ui.view">
+            <field name="name">hr.expense.sheet</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_filter"/>
+            <field name="arch" type="xml">
+
+
+                <filter name="submitted" position="replace">
+                    <filter domain="[('to_approve_user_id', '=', uid)]" string="待审核" name="submitted"
+                            help="Expenses to Approve"/>
+                </filter>
+
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rt_account_advance_payment_wizard" model="ir.ui.view">
+        <field name="name">rt.account.advance.payment.wizard.form</field>
+        <field name="model">rt.account.advance.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="登记付款">
+                <sheet>
+                    <field name="id" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>还款</h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" required="1" readonly="1"
+                                   string="员工"
+                                   context="{'default_is_company': True, 'default_supplier': True}"/>
+                            <field name="journal_id" widget="selection" string="付款账户"/>
+                            <field name="hide_payment_method" invisible="1"/>
+                            <field name="payment_method_id" widget="radio"
+                                   attrs="{'invisible': [('hide_payment_method', '=', True)]}"/>
+                            <label for="amount" string="金额"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="amount"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                       groups="base.group_multi_currency"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="payment_date" stirng="付款日期"/>
+                            <field name="communication"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string='确定' name="advance_post_payment" type="object" class="btn-primary"/>
+                    <button string="取消" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

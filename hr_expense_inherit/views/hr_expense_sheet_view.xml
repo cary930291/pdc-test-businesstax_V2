@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_expense_sheet_form_inherit" model="ir.ui.view">
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+
+            <field name="arch" type="xml">
+                <!--<form string="Expense Reports" class="o_expense_sheet">-->
+                    <!--<header>-->
+                        <!---->
+                        <!---->
+
+
+                        <!--<button name="action_submit" string="提交" type="object"-->
+                                <!--attrs="{'invisible':['|',('rt_user_can_submit','=',False),('state','not in',('draft','rejected'))]}"-->
+                                <!--class="oe_highlight"/>-->
+                        <!--<field name="rt_user_can_submit" invisible="1"/>-->
+                        <!--<field name="rt_user_can_approve" invisible="1"/>-->
+
+                        <!--<button name="action_retract" string="撤回" type="object"-->
+                                <!--groups=""-->
+                                <!--attrs="{'invisible':['|',('rt_user_can_submit','=',False),('state','not in',('reviewing','approve'))]}"/>-->
+
+                        <!--<button name="action_comment" string="审核" type="object" class="oe_highlight"-->
+                                <!--groups=""-->
+                                <!--attrs="{'invisible':['|',('rt_user_can_approve','=',False),('state','!=','reviewing')]}"/>-->
+
+                        <!--<button name="action_account_reject" string="拒绝" type="object" states="approve"-->
+                                <!--class="cancel_btn" groups="account.group_account_user"/>-->
+
+                        <!--<button name="action_cancel" string="取消过账"-->
+                                <!--confirm="确定取消过账吗？"-->
+                                <!--type="object" groups="account.group_account_user"-->
+                                <!--states="post"-->
+                                <!--class="oe_highlight o_expense_sheet_post"/>-->
+                        <!--<button name="to_do_journal_entry" states="approve" string="会计确认" type="object"-->
+                                <!--context="{'employee_id':employee_id}"-->
+                                <!--groups="account.group_account_user" class="oe_highlight o_expense_sheet_post"/>-->
+                        <!--<button name="register_payment_action" type="object"-->
+                                <!--string="登记付款" class="oe_highlight o_expense_sheet_pay"-->
+                                <!--attrs="{'invisible': [('state', '!=', 'post')]}"-->
+                                <!--context="{'default_amount': total_amount, 'partner_id': address_id}"-->
+                                <!--groups="account.group_account_user"/>-->
+                        <!--<button name="reset_expense_sheets" states="cancel" string="Resubmit" type="object"/>-->
+
+                        <!--<field name="state" widget="statusbar"-->
+                               <!--statusbar_visible="draft,reviewing,approve,post,done"/>-->
+                    <!--</header>-->
+                    <!--<sheet>-->
+                        <!--<div class="oe_button_box">-->
+                            <!--<button name="action_get_attachment_view"-->
+                                    <!--class="oe_stat_button"-->
+                                    <!--icon="fa-book"-->
+                                    <!--type="object">-->
+                                <!--<field name="attachment_number" widget="statinfo" string="Documents"/>-->
+                            <!--</button>-->
+                            <!--<button name="action_open_journal_entries"-->
+                                    <!--class="oe_stat_button"-->
+                                    <!--icon="fa-book"-->
+                                    <!--string="Accounting Entries"-->
+                                    <!--attrs="{'invisible': [('account_move_id', '=', False)]}"-->
+                                    <!--type="object">-->
+                            <!--</button>-->
+                        <!--</div>-->
+                        <!--<div class="oe_title">-->
+                            <!--<label for="name" class="oe_edit_only"/>-->
+                            <!--<h1>-->
+                                <!--<field name="name" placeholder="e.g. Trip to NY" readonly="1"/>-->
+                            <!--</h1>-->
+                        <!--</div>-->
+
+
+                        <!--<separator/>-->
+
+                        <!--<group>-->
+                            <!--<group>-->
+
+                                <!--<field name="department_id" required="1" options="{'no_create':True}"/>-->
+                                <!--<field name="company_id" groups="base.group_multi_company"/>-->
+                                <!--<field name="employee_id" invisible="0" readonly="1"/>-->
+                                <!--<field name="rt_to_approval_department_id" invisible="1"/>-->
+                                <!--<field name="rt_to_approval_employee_id" readonly="1"-->
+                                       <!--attrs="{'invisible':[('rt_to_approval_employee_id','=',False)]}"/>-->
+                                <!--<field name="responsible_id" invisible="1"/>-->
+                                <!--<field name="total_amount" invisible="1"/>-->
+                                <!--<field name="currency_id" invisible="1"/>-->
+                                <!--<field name="address_id" invisible="1"/>-->
+                                <!--&lt;!&ndash;<field name="has_prepayment_ids" string="是否有暂支"/>&ndash;&gt;-->
+
+                            <!--</group>-->
+                            <!--<group>-->
+                                <!--&lt;!&ndash;<field name="pre_payment_reminding"/>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<field name="is_deduct_payment" string="是否抵扣" widget="radio" attrs="{}"/>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<field name="to_deduct_payment" widget="prepayment_button" string="暂支抵扣"/>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<field name="is_deduct_payment" required="1" widget="radio"/>&ndash;&gt;-->
+
+
+                                <!--<field name="journal_id" domain="[('type', '=', 'purchase')]"-->
+                                       <!--groups="account.group_account_user"-->
+                                       <!--options="{'no_open': True, 'no_create': True}"-->
+                                       <!--invisible="1"/>-->
+                                <!--<field name="bank_journal_id" groups="account.group_account_user"-->
+                                       <!--options="{'no_open': True, 'no_create': True}"-->
+                                       <!--invisible="1"-->
+                                       <!--domain="[('type', 'in', ['cash', 'bank'])]"/>-->
+                                <!--<field name="accounting_date" groups="account.group_account_user"-->
+                                       <!--attrs="{'invisible': [('state', 'not in', ['approve', 'post', 'done'])]}"/>-->
+                                <!--<field name="account_move_id" invisible="1"/>-->
+                            <!--</group>-->
+                        <!--</group>-->
+
+                        <!--<notebook colspan="1">-->
+                            <!--<page string='报销明细'>-->
+                                <!--<field name="expense_line_ids"-->
+                                       <!--attrs="{'readonly':[('state','in',('done','post'))]}"-->
+                                       <!--context="{'default_employee_id':employee_id,'default_department_id':department_id,'default_state':'draft'}">-->
+                                    <!--<tree editable="bottom">-->
+                                        <!--<field name="name" string="消费用途"/>-->
+                                        <!--<field name="product_id" options="{'no_create':True}" string="费用类别"/>-->
+                                        <!--<field name="state" invisible="1"/>-->
+                                        <!--<field name="account_id" groups="account.group_account_user" required="1"-->
+                                               <!--attrs="{'no_create':True}"/>-->
+                                        <!--<field name="unit_amount" widget="monetary" string="金额"-->
+                                               <!--readonly="0"/>-->
+                                        <!--<field name="analytic_account_id" groups="analytic.group_analytic_accounting"-->
+                                               <!--invisible="1"/>-->
+                                        <!--<field name="message_unread" invisible="1"/>-->
+
+                                        <!--<field name="analytic_account_id" string="项目" options="{'no_create':True}"/>-->
+                                        <!--<field name="sale_id" string="订单" options="{'no_create':True}"/>-->
+                                        <!--<field name="quantity" groups="account.group_account_user" invisible="1"/>-->
+                                        <!--<field name="tax_ids" widget="many2many_tags"-->
+                                               <!--domain="[('type_tax_use','&lt;&gt;','sale')]"-->
+                                               <!--options="{'no_create':True}" required="1"/>-->
+                                        <!--<field name="employee_id" required="1" invisible="1"/>-->
+                                        <!--&lt;!&ndash;<field name="department_id" required="1" invisible="1"/>&ndash;&gt;-->
+                                        <!--<field name="state" invisible="1"/>-->
+                                        <!--<field name="total_amount" sum="Total Amount"/>-->
+                                        <!--<field name="description" string="备注"/>-->
+                                        <!--<field name="attachment_number" string=" "/>-->
+                                        <!--<button name="action_get_attachment_view" string="View Attachments"-->
+                                                <!--type="object"-->
+                                                <!--icon="fa-paperclip"/>-->
+                                    <!--</tree>-->
+                                <!--</field>-->
+                                <!--<field name="advance_payment_json" widget="advance_deduct_widget"/>-->
+                            <!--</page>-->
+
+                            <!--<page string="付款信息" attrs="{'invisible':[('has_payment_ids','=',False)]}">-->
+                                <!--<field name="account_payment_ids" readonly="1">-->
+                                    <!--<tree>-->
+                                        <!--<field name="display_name"/>-->
+                                        <!--<field name="payment_date"/>-->
+                                        <!--<field name="journal_id"/>-->
+                                        <!--<field name="amount" sum="总计"/>-->
+                                        <!--&lt;!&ndash;<field name="account_id"/>&ndash;&gt;-->
+                                    <!--</tree>-->
+
+                                <!--</field>-->
+
+                            <!--</page>-->
+
+
+                        <!--</notebook>-->
+                        <!--&lt;!&ndash;<notebook>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<page string="可抵扣暂支">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="advance_payment_ids" readonly="1" context="{'active_id':active_id}">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tree>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="name"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="accounting_date"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="amount"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="reconciled_amount" string="已抵扣金额"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="advance_payment_reminding" string="可用金额"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="c_deducted"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<field name="is_disabled" invisible="0"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button name="toggle_deduction" type="object" widget="deduct_button"&ndash;&gt;-->
+                        <!--&lt;!&ndash;context="{}"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tree>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;</field>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</page>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</notebook>&ndash;&gt;-->
+                        <!--<group>-->
+                            <!--<group class="oe_subtotal_footer oe_right">-->
+                                <!--<field name="total_amount" string="报销金额"/>-->
+                                <!--<field name="reconciled_amount" string="已抵扣金额"/>-->
+                                <!--<field name="payment_amount" class="oe_subtotal_footer_separator"-->
+                                       <!--string="付款金额"/>-->
+                            <!--</group>-->
+                        <!--</group>-->
+
+
+                        <!--<field name="has_payment_ids" invisible="1"/>-->
+
+                        <!--<field name="has_payment_line_ids" invisible="1"/>-->
+
+
+                    <!--</sheet>-->
+                    <!--<div class="oe_chatter">-->
+                        <!--<field name="message_follower_ids" widget="mail_followers"/>-->
+                        <!--<field name="message_ids" widget="mail_thread"/>-->
+                    <!--</div>-->
+                <!--</form>-->
+
+
+                <!--<xpath expr="//button[@name='%(hr_expense.hr_expense_refuse_wizard_action)d']" position="replace">-->
+                <!--<button name="%(hr_expense.hr_expense_refuse_wizard_action)d"-->
+                <!--states="submit,manager1_approve,manager2_approve,manager3_approve" string="Refuse"-->
+                <!--type="action" groups="hr_expense.group_hr_expense_user"/>-->
+                <!--</xpath>-->
+
+                <!--<xpath expr="//button[@name='action_sheet_move_create']" position="replace">-->
+                <!---->
+                <!--</xpath>-->
+
+
+            </field>
+        </record>
+
+
+        <record id="linkloving_view_expenses_tree" model="ir.ui.view">
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">单号</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="full_description" string="消费用途" widget="set_td_width" td_width="20"/>
+                    <field name="create_date" widget="date"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="view_hr_expense_sheet_tree_no_create" model="ir.ui.view">
+            <field name="name">hr.expense.sheet.tree</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="arch" type="xml">
+                <tree string="Expense Reports" decoration-warning="state=='draft'"
+                      decoration-bf="message_unread == True" create="false">
+                    <field name="name" string="单号"/>
+                    <field name="full_description" widget="set_td_width" td_width="20"/>
+                    <field name="product_id" string="产品"/>
+                    <field name="create_date" widget="date"/>
+                    <field name="accounting_date"/>
+                    <field name="employee_id"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="total_amount" sum="Total Amount"/>
+                    <field name="state"/>
+                    <field name="message_unread" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_expense.hr_expense_form_view" model="ir.ui.view">
+            <field name="name">hr.expense.form</field>
+            <field name="model">hr.expense</field>
+            <field eval="25" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Expenses">
+                    <header>
+                        <button name="submit_expenses" states="draft" string="Submit to Manager" type="object"
+                                class="oe_highlight o_expense_submit"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,reported,done"/>
+                        <button name="view_sheet" type="object" string="View Report" class="oe_highlight"
+                                attrs="{'invisible': [('state', '=','draft')]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box">
+                            <button name="action_get_attachment_view"
+                                    class="oe_stat_button"
+                                    icon="fa-book"
+                                    type="object">
+                                <field name="attachment_number" widget="statinfo" string="Documents"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Lunch with Customer"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="product_id" context="{'default_can_be_expensed': 1}" attrs="{}"/>
+                                <field name="unit_amount" required="1" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <label for="quantity"/>
+                                <div>
+                                    <field name="quantity" class="oe_inline"/>
+                                    <field name="product_uom_id" widget="selection" class="oe_inline"
+                                           groups="product.group_uom"/>
+                                </div>
+                                <field name="tax_ids" domain="[('type_tax_use', '=', 'purchase')]"
+                                       widget="many2many_tags" groups="base.group_no_one"/>
+                            </group>
+                            <group>
+                                <field name="reference"/>
+                                <field name="date"/>
+                                <field name="account_id"/>
+                                <field name="employee_id"/>
+                                <field name="sheet_id" invisible="1"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group>
+                                <field name="total_amount" widget='monetary'
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <label for="payment_mode"/>
+                                <div>
+                                    <field name="payment_mode" widget="radio"/>
+                                </div>
+                            </group>
+
+                        </group>
+                        <div>
+                            <field name="description" placeholder="Notes..."/>
+                        </div>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_expense_sheet_filter_inherit" model="ir.ui.view">
+            <field name="name">hr.expense.sheet</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_filter"/>
+            <field name="arch" type="xml">
+                <filter name="approved" position="replace">
+                    <filter domain="[('state', '=', 'post')]" string="待过账" name="approved"
+                            help="Expenses to Invoice"/>
+                </filter>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">单号</attribute>
+                </xpath>
+
+
+                <field name="name" position="after">
+                    <field name="full_description"/>
+                    <field name="total_amount" filter_domain="[('total_amount','ilike',self)]" string="报销金额"/>
+                    <field name="product_id" string="费用类别"/>
+                    <field name="account_id" string="科目"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="action_hr_expense_to_submit" model="ir.actions.act_window">
+            <field name="name">待提交报销单</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="domain">[('employee_id.user_id', '=', uid),('state','in',('draft','rejected'))]</field>
+            <!--<field name="view_ids" eval="[(5, 0, 0),-->
+            <!--(0, 0, {'view_mode': 'tree', 'view_id': ref('hr_expense.view_hr_expense_sheet_tree')}),-->
+            <!--(0, 0, {'view_mode': 'form', 'view_id': ref('hr_expense.view_hr_expense_sheet_form')})]"/>-->
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_hr_expense_submitted" model="ir.actions.act_window">
+            <field name="name">已提交报销单</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="context">{'approve_type':'submitted'}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('rt_hr_expense.view_hr_expense_sheet_tree_no_create')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('hr_expense.view_hr_expense_sheet_form')})]"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_hr_expense_to_approve" model="ir.actions.act_window">
+            <field name="name">待审核报销单</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="context">{'approve_type':'to_approve'}</field>
+            <field name="domain">[('rt_to_approval_department_id.manager_id.user_id','=',uid)]</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('rt_hr_expense.view_hr_expense_sheet_tree_no_create')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('hr_expense.view_hr_expense_sheet_form')})]"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_hr_expense_my_approved" model="ir.actions.act_window">
+            <field name="name">已审核报销单</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="context">{'approve_type':'approved'}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('rt_hr_expense.view_hr_expense_sheet_tree_no_create')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('hr_expense.view_hr_expense_sheet_form')})]"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="待提交" id="menu_hr_expense_to_submit" parent="hr_expense.menu_hr_expense_my_expenses" sequence="1"
+                  action="action_hr_expense_to_submit"/>
+        <menuitem name="已提交" id="menu_hr_expense_submitted" parent="hr_expense.menu_hr_expense_my_expenses" sequence="2"
+                  action="action_hr_expense_submitted"/>
+        <menuitem name="待审核" id="menu_hr_expense_to_approve" parent="hr_expense.menu_hr_expense_my_expenses"
+                  sequence="3"
+                  action="action_hr_expense_to_approve"/>
+        <menuitem name="已审核" id="menu_hr_expense_approve_my_approved" parent="hr_expense.menu_hr_expense_my_expenses"
+                  sequence="4"
+                  action="action_hr_expense_my_approved"/>
+
+
+        <menuitem
+                id="menu_hr_expense_root"
+                name="费用"
+                parent="account.menu_finance"
+                sequence="5"/>
+
+
+        <record id="action_hr_expense_expense_to_journal" model="ir.actions.act_window">
+            <field name="name">待付款报销</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="domain">[('state','not in',('draft','rejected','cancel','salary'))]</field>
+            <field name="context">{'search_default_to_post': 1}</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('rt_hr_expense.view_hr_expense_sheet_tree_no_create')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('hr_expense.view_hr_expense_sheet_form')})]"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                id="menu_hr_expense_sheet_to_journal"
+                name="待付款报销"
+                action="action_hr_expense_expense_to_journal"
+                parent="menu_hr_expense_root"
+                sequence="6"/>
+
+
+        <menuitem id="menu_excel_report" name="自定义Excel报告" parent="account.menu_finance_reports"
+                  groups="account.group_account_user"/>
+
+
+        <menuitem id="menu_expense_sheet_report" name="报销费用报告" parent="menu_excel_report"
+                  action="action_hr_expense_sheet_wizard" groups="account.group_account_user"/>
+
+
+        <record id="hr_expense_product_tree" model="ir.ui.view">
+            <field name="name">product.product.expense</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+
+
+            </field>
+        </record>
+
+
+        <record id="hr_expense.hr_expense_product" model="ir.actions.act_window">
+            <field name="name">Expense Products</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="rt_hr_expense.hr_expense_product_tree"/>
+            <field name="context">{"default_can_be_expensed": 1, 'default_type': 'service'}</field>
+            <field name="domain">[('can_be_expensed', '=', True)]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new expense category.
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
