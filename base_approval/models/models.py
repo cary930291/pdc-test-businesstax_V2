@@ -195,7 +195,7 @@ class BaseApprove(models.AbstractModel):
             mail = self.env['mail.compose.message'].sudo(admin_user_id).with_context(active_model='hr.expense.sheet',
                                                                                      active_id=self.id).create(
                 {
-                    'body': u'清點圖示,檢視費用報表資料',
+                    'body': u'請點圖示,檢視費用報表資料',
                     'author_id': self.create_uid.partner_id.id,
                     'model': 'hr.expense.sheet',
                     'partner_ids': [(4, user.partner_id.id) for user in users],
@@ -227,7 +227,7 @@ class BaseApprove(models.AbstractModel):
         mail = self.env['mail.compose.message'].sudo(admin_user_id).with_context(active_model='hr.expense.sheet',
                                                                                  active_id=self.id).create(
             {
-                'body': u'清點圖示,進行費用籤核',
+                'body': u'請點圖示,進行費用籤核',
                 'author_id': self.create_uid.partner_id.id,
                 'model': 'hr.expense.sheet',
                 'partner_ids': [(4, user_id.partner_id.id)],
