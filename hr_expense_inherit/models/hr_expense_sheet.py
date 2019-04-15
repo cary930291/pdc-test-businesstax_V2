@@ -21,6 +21,17 @@ class HrExpenseSheet(models.Model):
                        states={'draft': [('readonly', False)], 'approve': [('readonly', False)],
                                'cancel': [('readonly', False)]})
 
+    @api.model
+    def create(self, vals_list):
+
+        res = super(HrExpenseSheet, self).create(vals_list)
+        if res.department_id.manager_id:
+            user_id = res.department_id.manager_id.user_id
+        else:
+            user_id = res.employee_id.user_id
+        res.p_manager_id = user_id
+        return res
+
     @api.multi
     def refuse_sheet(self, reason):
         if not self.user_has_groups('hr_expense.group_hr_expense_user'):
@@ -89,8 +100,8 @@ class HrExpenseSheet(models.Model):
     def _onchange_employee_id(self):
         self.address_id = self.employee_id.sudo().address_home_id
         self.department_id = self.employee_id.department_id
-        self.p_manager_id = self.employee_id.expense_manager_id or self.employee_id.parent_id.user_id
-        self.user_id = self.employee_id.parent_id.user_id
+        self.p_manager_id = self.employee_id.department_id.manager_id.user_id or self.employee_id.user_id
+        self.user_id = self.employee_id.user_id
 
     def set_to_reject(self):
         self.state = 'cancel'
@@ -113,6 +124,7 @@ class HrExpenseSheet(models.Model):
         reject_str = "审核通过：" + remark
         self.message_post(body=reject_str)
         to_approve_user_id = False
+        users = self.env['res.users']
         after_line_ids = self.to_approval_department_id.auth_id.line_ids.filtered(lambda x: x.advanced == False)
 
         if self.to_approval_department_id.manager_id.user_id == self.env.user:
@@ -126,6 +138,8 @@ class HrExpenseSheet(models.Model):
             else:
                 parent_department_id = self.to_approval_department_id.parent_id
                 self.to_approval_department_id = parent_department_id.id
+                if parent_department_id.auth_id and parent_department_id.auth_id.info_user_ids:
+                    users += parent_department_id.auth_id.info_user_ids
                 if parent_department_id.manager_id:
                     self.p_manager_id = parent_department_id.manager_id.user_id
                 if parent_department_id.auth_id and parent_department_id.auth_id.line_ids.filtered(
@@ -166,6 +180,8 @@ class HrExpenseSheet(models.Model):
                         self.to_approval_department_id = parent_department_id
                         if parent_department_id.manager_id:
                             self.p_manager_id = parent_department_id.manager_id.user_id
+                        if parent_department_id.auth_id and parent_department_id.auth_id.info_user_ids:
+                            users += parent_department_id.auth_id.info_user_ids
 
                         if parent_department_id.auth_id and parent_department_id.auth_id.line_ids.filtered(
                                 lambda x: x.advanced == True):
@@ -177,7 +193,9 @@ class HrExpenseSheet(models.Model):
                             to_approve_user_id = parent_department_id.manager_id.user_id
                             # self._set_approve_user_id(to_approve_user_id)
         if to_approve_user_id:
+            users += to_approve_user_id
             self._set_approve_user_id(to_approve_user_id)
+        self.send_info_mail(users)
 
     department_id = fields.Many2one('hr.department', string=u'部门',
                                     track_visibility='onchange',

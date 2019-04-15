@@ -194,16 +194,12 @@ class BaseApprove(models.AbstractModel):
                 {
                     'body': self.name,
                     'author_id': self.create_uid.partner_id.id,
+                    'model':'hr.expense.sheet',
                     'partner_ids': [(4, user.partner_id.id) for user in users],
-                    'subject': self.employee_id.name + '费用报销通知',
-                    'mail_server_id': self.env['ir.mail_server'].sudo().search([])[0].id,
-                    'auto_delete_message': True,
-                    'auto_delete': True,
+                    'subject': self.employee_id.name + '提交了费用报告',
 
                 })
             try:
-                print(mail.partner_ids)
-
                 mail.send_mail()
             except:
 
@@ -217,7 +213,7 @@ class BaseApprove(models.AbstractModel):
 
         user = self.env['res.users'].search([('login', '=', user_name)])
 
-        return 7
+        return 2
 
     def _set_approve_user_id(self, user_id):
         if not user_id:
@@ -225,29 +221,6 @@ class BaseApprove(models.AbstractModel):
         if not user_id.partner_id:
             raise UserError('找不到审核人对应的partner')
         self.to_approve_user_id = user_id.id
-        if not self.create_uid.partner_id:
-            raise UserError(u'找不到创建人对应的partner')
-
-        # admin_id=self.env.ref('base.user_admin')
-        # print (admin_id)
-        email_user_id = self._get_server_user_id()
-        mail = self.env['mail.compose.message'].sudo(email_user_id).with_context(active_model='hr.expense.sheet',
-                                                                                 active_id=self.id).create(
-            {
-                'body': self.name,
-                'author_id': self.create_uid.partner_id.id,
-                'partner_ids': [(4, user_id.partner_id.id)],
-                'model': 'hr.expense.sheet',
-                'subject': self.employee_id.name + u'费用待审核',
-                'mail_server_id': self.env['ir.mail_server'].sudo().search([])[0].id,
-
-            })
-        try:
-
-            mail.send_mail()
-        except:
-
-            pass
 
     # 提交审核
     def action_submit(self, need_notification=False):
@@ -255,6 +228,7 @@ class BaseApprove(models.AbstractModel):
         # 创建审核记录
         self.check_values()
         self.create_approve_record(status='2')
+        users = self.env['res.users']
 
         department_id = self.get_approve_department_id()
         # 如果部门没有配置权限或者没有配置签核人
@@ -268,11 +242,13 @@ class BaseApprove(models.AbstractModel):
             to_approve_id = line_ids[0].user_id
             # self._set_approve_user_id(line_ids[0].user_id)
         self.with_context(tracking_disable=True)._set_approve_user_id(to_approve_id)
+        users += to_approve_id
         self.to_approval_department_id = department_id.id
         if department_id.manager_id:
-            self.p_manager_id=self.department_id.manager_id.user_id
+            self.p_manager_id = self.department_id.manager_id.user_id
         if department_id and department_id.auth_id and department_id.auth_id.info_user_ids:
-            self.with_context(tracking_disable=True).send_info_mail(department_id.auth_id.info_user_ids)
+            users += department_id.auth_id.info_user_ids
+        self.with_context(tracking_disable=True).send_info_mail(users)
         self.state = "reviewing"
 
         # if need_notification:
