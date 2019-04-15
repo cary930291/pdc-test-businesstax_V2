@@ -182,6 +182,9 @@ class BaseApprove(models.AbstractModel):
     def check_values(self):
         """
         用于检查是否可以提交
+        有一比费用要通知你
+
+        指挥你
         :return:
         """
 
@@ -192,11 +195,11 @@ class BaseApprove(models.AbstractModel):
             mail = self.env['mail.compose.message'].sudo(admin_user_id).with_context(active_model='hr.expense.sheet',
                                                                                      active_id=self.id).create(
                 {
-                    'body': self.name,
+                    'body': u'清點圖示,檢視費用報表資料',
                     'author_id': self.create_uid.partner_id.id,
-                    'model':'hr.expense.sheet',
+                    'model': 'hr.expense.sheet',
                     'partner_ids': [(4, user.partner_id.id) for user in users],
-                    'subject': self.employee_id.name + '提交了费用报告',
+                    'subject': self.name + '費用知會您',
 
                 })
             try:
@@ -209,18 +212,33 @@ class BaseApprove(models.AbstractModel):
         server = self.env['ir.mail_server'].sudo().search([])
         if not server:
             raise UserError('找不到邮件服务器')
-        user_name = server[0].smtp_user
+        admin_id = self.env.ref('base.user_admin')
 
-        user = self.env['res.users'].search([('login', '=', user_name)])
-
-        return 7
+        return admin_id.id
 
     def _set_approve_user_id(self, user_id):
         if not user_id:
-            raise UserError(u'找不到审核人')
+            raise UserError(u'找不到審核人')
         if not user_id.partner_id:
-            raise UserError('找不到审核人对应的partner')
+            raise UserError('找不到審核人對應partner')
         self.to_approve_user_id = user_id.id
+
+        admin_user_id = self._get_server_user_id()
+        mail = self.env['mail.compose.message'].sudo(admin_user_id).with_context(active_model='hr.expense.sheet',
+                                                                                 active_id=self.id).create(
+            {
+                'body': u'清點圖示,進行費用籤核',
+                'author_id': self.create_uid.partner_id.id,
+                'model': 'hr.expense.sheet',
+                'partner_ids': [(4, user_id.partner_id.id)],
+                'subject': self.name + u'費用待您審核',
+
+            })
+        try:
+            mail.send_mail()
+        except:
+
+            pass
 
     # 提交审核
     def action_submit(self, need_notification=False):
@@ -228,12 +246,11 @@ class BaseApprove(models.AbstractModel):
         # 创建审核记录
         self.check_values()
         self.create_approve_record(status='2')
-        users = self.env['res.users']
 
         department_id = self.get_approve_department_id()
         # 如果部门没有配置权限或者没有配置签核人
         if department_id and not department_id.auth_id:
-            raise UserError(u'部门没有配置审核权限')
+            raise UserError(u'部門沒有配置審核權限')
         line_ids = department_id.auth_id.line_ids.filtered(lambda x: x.advanced == True)
         if department_id and not line_ids:
             to_approve_id = department_id.manager_id.user_id
@@ -242,13 +259,10 @@ class BaseApprove(models.AbstractModel):
             to_approve_id = line_ids[0].user_id
             # self._set_approve_user_id(line_ids[0].user_id)
         self.with_context(tracking_disable=True)._set_approve_user_id(to_approve_id)
-        users += to_approve_id
         self.to_approval_department_id = department_id.id
         if department_id.manager_id:
             self.p_manager_id = self.department_id.manager_id.user_id
-        if department_id and department_id.auth_id and department_id.auth_id.info_user_ids:
-            users += department_id.auth_id.info_user_ids
-        self.with_context(tracking_disable=True).send_info_mail(users)
+
         self.state = "reviewing"
 
         # if need_notification:
@@ -257,7 +271,7 @@ class BaseApprove(models.AbstractModel):
     # 撤回
     def action_cancel_approval(self, remark=False):
         if remark:
-            reject_str = "撤回原因：" + remark
+            reject_str = u"撤回原因：" + remark
             self.message_post(body=reject_str)
         self.create_approve_record(status='3', remark=remark)
         self.state = "draft"
@@ -269,7 +283,7 @@ class BaseApprove(models.AbstractModel):
 
     def action_reject(self, remark='', need_notification=False):
         if remark:
-            reject_str = "拒绝原因：" + remark
+            reject_str = u"拒絕原因：" + remark
             self.message_post(body=reject_str)
         # admin_id = self.env['res.users']
         admin_user_id = self._get_server_user_id()
@@ -283,7 +297,7 @@ class BaseApprove(models.AbstractModel):
     # 审核通过
     def action_approve(self, remark=''):
         self.create_approve_record(status='0', remark=remark)
-        reject_str = "审核通过：" + remark
+        reject_str = "審核通過：" + remark
         self.message_post(body=reject_str)
         if self.to_approval_department_id.manager_id.user_id == self.env.user:
             if self.to_approval_department_id.parent_id.id:
@@ -322,7 +336,7 @@ class BaseApprove(models.AbstractModel):
     def unlink(self):
         for r in self:
             if r.state not in ('draft', 'cancel'):
-                raise UserError('只可删除草稿状态的单据')
+                raise UserError('只可以刪除草稿狀態的單據')
         return super(BaseApprove, self).unlink()
 
 
@@ -333,7 +347,7 @@ class ApprovalActionWizard(models.TransientModel):
     _name = "to.approval.action.wizard"
 
     res_model = fields.Char()
-    remark = fields.Text(string=u'备注')
+    remark = fields.Text(string=u'備注')
 
     def submit(self):
         context = dict(self._context or {})
