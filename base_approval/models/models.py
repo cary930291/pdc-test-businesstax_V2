@@ -213,7 +213,7 @@ class BaseApprove(models.AbstractModel):
 
         user = self.env['res.users'].search([('login', '=', user_name)])
 
-        return 2
+        return 7
 
     def _set_approve_user_id(self, user_id):
         if not user_id:
