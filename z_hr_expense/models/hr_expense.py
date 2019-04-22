@@ -8,7 +8,7 @@ class HrDepartment(models.Model):
     _inherit = 'hr.expense'
 
     @api.model
-    @api.onchange('product_id', 'employee_id')
+    @api.onchange('product_id', 'x_studio_attribution_employee')
     def _onchange_product_id(self):
         res = super(HrDepartment, self)._onchange_product_id()
         if self.product_id:
@@ -23,7 +23,7 @@ class HrDepartment(models.Model):
             # ('sale', '銷售'),
             # ('management', '管理'),
             # ('research ', '研發'),
-            _org_name = self.employee_id.department_id.x_studio_dept_category
+            _org_name = self.x_studio_attribution_employee.department_id.x_studio_dept_category
             _dept_account = self.env['hr.expense.mapping'].search([('product_id','=',self.product_id.id)])
 
             if _dept_account:

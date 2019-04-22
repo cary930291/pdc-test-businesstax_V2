@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="hr_expense_mapping_tree" model="ir.ui.view">
+            <field name="name">hr.expense.mapping.tree</field>
+            <field name="model">hr.expense.mapping</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="product_id"/>
+                    <field name="expense_account_id"/>
+                    <field name="manufacture_account_id"/>
+                    <field name="sale_account_id"/>
+                    <field name="management_account_id"/>
+                    <field name="research_account_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_expense_mapping_form" model="ir.ui.view">
+            <field name="name">hr.expense.mapping.form</field>
+            <field name="model">hr.expense.mapping</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="expense_account_id"/>
+                            <field name="manufacture_account_id"/>
+                            <field name="sale_account_id"/>
+                            <field name="management_account_id"/>
+                            <field name="research_account_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_expense_mapping_action" model="ir.actions.act_window">
+            <field name="name">hr.expense.mapping.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.expense.mapping</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+                <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_hr_expense_mapping" name="hr expense mapping"
+                  parent="hr_expense.menu_hr_expense_configuration" action="hr_expense_mapping_action"
+                  sequence=""/>
+    </data>
+</odoo>
